@@ -1,0 +1,5 @@
+- project:
+    name: SpWorkspace22/sample-app
+    check:
+      jobs:
+        - hello-world

@@ -1,0 +1,21 @@
+- pipeline:
+    name: check
+    description: Run CI jobs for GitHub pull requests.
+    manager: independent
+    trigger:
+      github:
+        - event: pull_request
+          action: opened
+        - event: pull_request
+          action: synchronize
+        - event: pull_request
+          action: reopened
+    start:
+      github:
+        check: in_progress
+    success:
+      github:
+        check: success
+    failure:
+      github:
+        check: failure
