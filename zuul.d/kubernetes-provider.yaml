@@ -1,0 +1,28 @@
+- section:
+    name: kubernetes-local
+    connection: kubernetes
+
+- provider:
+    name: kubernetes-local
+    section: kubernetes-local
+    labels:
+      - name: zuul-k8s-pod
+        kind: pod
+        description: Kubernetes pod for Zuul build jobs
+        spec:
+          containers:
+            - name: zuul-worker
+              image: python:3.12-slim
+              imagePullPolicy: IfNotPresent
+              command:
+                - /bin/sh
+                - -c
+              args:
+                - sleep infinity
+              resources:
+                requests:
+                  cpu: 250m
+                  memory: 512Mi
+                limits:
+                  cpu: "1"
+                  memory: 1Gi
