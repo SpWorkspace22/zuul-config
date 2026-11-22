@@ -4,4 +4,4 @@
     post-run:
       - playbooks/base/post-logs.yaml
     roles:
-      - opendev: zuul/zuul-jobs
+      - zuul: zuul/zuul-jobs
