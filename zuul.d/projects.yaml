@@ -1,5 +1,9 @@
 - project:
     name: SpWorkspace22/sample-app
+    queue: sample-app
     check:
+      jobs:
+        - hello-world
+    gate:
       jobs:
         - hello-world
