@@ -1,3 +1,12 @@
+- image:
+    name: python-worker-image
+    type: cloud
+    description: Kubernetes worker image reference
+
+- flavor:
+    name: kubernetes-pod-flavor
+    description: Kubernetes pod flavor placeholder
+    
 - section:
     name: kubernetes-local
     connection: kubernetes
@@ -14,12 +23,10 @@
 - provider:
     name: kubernetes-local
     section: kubernetes-local
-
     images:
       - name: python-worker-image
         type: cloud
         description: Kubernetes worker image reference
-
     labels:
       - name: zuul-k8s-pod
         image: python-worker-image
@@ -31,11 +38,8 @@
             - name: zuul-worker
               image: python:3.12-slim
               imagePullPolicy: IfNotPresent
-              command:
-                - /bin/sh
-                - -c
-              args:
-                - sleep infinity
+              command: ["/bin/sh", "-c"]
+              args: ["sleep infinity"]
               resources:
                 requests:
                   cpu: 250m
