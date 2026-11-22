@@ -2,6 +2,10 @@
     name: kubernetes-local
     connection: kubernetes
 
+- label:
+    name: zuul-k8s-pod
+    description: Kubernetes pod for Zuul build jobs
+    
 - provider:
     name: kubernetes-local
     section: kubernetes-local
