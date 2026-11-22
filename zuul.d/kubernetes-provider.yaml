@@ -1,16 +1,29 @@
 - section:
     name: kubernetes-local
     connection: kubernetes
+    flavors:
+      - name: kubernetes-pod-flavor
+        description: Kubernetes pod flavor placeholder
 
 - label:
     name: zuul-k8s-pod
+    image: python-worker-image
+    flavor: kubernetes-pod-flavor
     description: Kubernetes pod for Zuul build jobs
-    
+
 - provider:
     name: kubernetes-local
     section: kubernetes-local
+
+    images:
+      - name: python-worker-image
+        type: cloud
+        description: Kubernetes worker image reference
+
     labels:
       - name: zuul-k8s-pod
+        image: python-worker-image
+        flavor: kubernetes-pod-flavor
         kind: pod
         description: Kubernetes pod for Zuul build jobs
         spec:
