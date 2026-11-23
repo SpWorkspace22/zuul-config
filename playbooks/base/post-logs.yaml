@@ -4,9 +4,8 @@
   vars:
     zuul_log_url: "http://localhost:8080"
     zuul_log_path: "{{ zuul.build[:3] }}/{{ zuul.tenant }}/{{ zuul.build }}"
-
-  roles:
-    - generate-zuul-manifest
+    generate_zuul_manifest_root: "/srv/static/logs/{{ zuul_log_path }}"
+    generate_zuul_manifest_output: "/srv/static/logs/{{ zuul_log_path }}/zuul-manifest.json"
 
   tasks:
     - name: Create published log directory
@@ -22,6 +21,10 @@
         dest: "/srv/static/logs/{{ zuul_log_path }}/"
         mode: "0644"
         directory_mode: "0755"
+
+    - name: Generate Zuul manifest and register artifact
+      ansible.builtin.include_role:
+        name: generate-zuul-manifest
 
     - name: Register published log URL with Zuul
       zuul_return:
