@@ -10,6 +10,10 @@
           action: changed
         - event: pull_request
           action: reopened
+        - event: pull_request
+          action: comment
+          comment:
+            - '(?i)^\s*recheck\s*$'
     start:
       github:
         check: in_progress
