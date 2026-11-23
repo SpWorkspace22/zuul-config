@@ -1,5 +1,6 @@
 - job:
     name: base
     parent: null
+    post-run: playbooks/base/post-logs.yaml
     roles:
       - zuul: zuul/zuul-jobs
